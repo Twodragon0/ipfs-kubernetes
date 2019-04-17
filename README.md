@@ -14,8 +14,9 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 
 # Requirements
 - ubuntu LTS 18.04
-- kubernetes
-- docker
+- kubernetes 1.13
+- docker 18.09.5
+- go 1.12
 - go-ipfs
 
 # Installation
