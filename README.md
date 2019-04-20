@@ -59,7 +59,7 @@ sudo apt-get update -q && \
 sudo apt-get install -qy kubeadm 
 ```
 
-### Initialize your master node
+## Initialize your master node
 
  * You now have two new commands installed:
  * kubeadm - used to create new clusters or join an existing one
