@@ -54,7 +54,7 @@ sudo apt-get install -qy kubeadm
 
 ### Initialize your master node
 
-* You now have two new commands installed:
+ * You now have two new commands installed:
  * kubeadm - used to create new clusters or join an existing one
  * kubectl - the CLI administration tool for Kubernetes
 
@@ -75,7 +75,7 @@ sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.43.0.0/16
 After the `init` is complete run the snippet given to you on the command-line:
 
 ```sh
-mkdir -p $HOME/.kube
+  mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
