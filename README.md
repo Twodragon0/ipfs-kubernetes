@@ -21,11 +21,12 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 
 # Installation
 
-- Docker Install
+- Docker Install and update
 ```sh
 curl -sSL get.docker.com | sh && \ 
 sudo usermod -aG docker $USER \
-newgrp docker
+sudo newgrp docker \
+sudo apt-get update && sudo apt-get upgrade -y
 ```
 If it doesn't work, we can use this:
 ```sh
@@ -88,11 +89,15 @@ After the `init` is complete run the snippet given to you on the command-line:
 Your join token is valid for 24 hours, so save it into a text file. Here's an example of mine:
 
 ```sh
-sudo kubeadm join --ignore-preflight-errors=all wc0mxl.tw2chfnr3hxf8b54 --discovery-token-ca-cert-hash 192.168.1.48:6443 sha256:0e1806591201ba365c5c04d93d12788675be98b8c5bbe10f5541f2644e720f23 
+sudo kubeadm join 192.168.1.49:6443 --token 23oulg.on7eyrbnetdyolp8 --discovery-token-ca-cert-hash sha256:6a583e6385e895971dcc9dc78505e14c1ba6f429f66aee53ab1ac3d4abac733d
 ```
 If you do not remember the join, check the kubeadm join history again:
 ```sh
 sudo kubeadm token create --print-join-command
+```
+When a master node uses `$ kubectl get nodes`, we see `Not Ready`. By default, your cluster will not schedule pods on the master for security reasons. If you want to be able to schedule pods on the master, run: 
+ ```sh
+kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 On each node that joins including the master:
 ```sh
