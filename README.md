@@ -22,11 +22,11 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 # Installation
 
 - Docker Install
-If not $ sudo usermod NAME -aG docker or reboot
 ```sh
 $ curl -sSL get.docker.com | sh && \ 
 sudo usermod -aG docker $USER  
 ```
+If not $ sudo usermod NAME -aG docker or reboot
 
 -Disable Swap
 ```sh
