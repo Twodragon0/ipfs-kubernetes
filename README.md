@@ -26,14 +26,13 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 curl -sSL get.docker.com | sh && \ 
 sudo usermod -aG docker $USER \
 newgrp docker
-```sh
-If it doesn't work, we can use this:
 ```
+If it doesn't work, we can use this:
+```sh
 sudo usermod NAME -aG docker
 sudo reboot
 ```
-
-- Disable Swap and * Edit `/boot/cmdline.txt`
+Disable Swap and * Edit `/boot/cmdline.txt`
 ```sh
 sudo swapoff -a
 sudo dphys-swapfile swapoff && \
