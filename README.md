@@ -173,8 +173,8 @@ ip link delete flannel.1
 And then install, first uses `$ systemctl start docker`
 
 `kube-system kube-flannel-ds-arm-7p5pl  CrashLoopBackOff` error:
-`
+```sh
 kubectl delete pods deployment --namespace=kube-system kube-flannel-ds-arm-7p5pl
 sudo reboot
-`
+```
 
