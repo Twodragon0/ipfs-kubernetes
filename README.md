@@ -62,15 +62,22 @@ sudo apt-get install -qy kubeadm
 
 `kubeadm` now has a command to pre-pull the requisites Docker images needed to run a Kubernetes master, type in:
 
-```sh
+```
 sudo kubeadm config images pull -v3
 ```
 If using Flannel:
 
 * Initialize your master node with a Pod network CIDR:
 
-```sh
+```
 sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.43.0.0/16
+```
+If using Weave Net
+
+* Initialize your master node:
+
+```
+$ sudo kubeadm init --token-ttl=0
 ```
 After the `init` is complete run the snippet given to you on the command-line:
 
