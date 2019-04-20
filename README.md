@@ -19,6 +19,13 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 - go 1.12
 - go-ipfs 0.4.19
 
+Keep read same fild:
+https://github.com/alexellis/k8s-on-raspbian
+
+static network ip for mac mini and raspberry pi
+https://altongmon.tistory.com/637
+https://hiseon.me/2018/09/06/ubuntu-18-04-netplan/
+
 # Installation
 
 - Docker Install and update
@@ -99,10 +106,26 @@ When a master node uses `$ kubectl get nodes`, we see `Not Ready`. By default, y
  ```sh
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
+Install flannel 
+```sh
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+If not install flannel
+```sh
+kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+```
+## Initialize your Work node
 On each node that joins including the master:
 ```sh
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
+
+`
+NAME            STATUS   ROLES    AGE   VERSION
+23ipfscluster   Ready    <none>   25d   v1.14.1
+wrl-01macmini   Ready    master   36d   v1.13.4
+wrl-02macmini   Ready    <none>   25d   v1.14.1
+`
 
 # Troubleshooting
 
@@ -148,3 +171,10 @@ ip link delete cni0
 ip link delete flannel.1
 ```
 And then install, first uses `$ systemctl start docker`
+
+`kube-system kube-flannel-ds-arm-7p5pl  CrashLoopBackOff` error:
+`
+kubectl delete pods deployment --namespace=kube-system kube-flannel-ds-arm-7p5pl
+sudo reboot
+`
+
