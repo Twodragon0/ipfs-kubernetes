@@ -18,15 +18,26 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 - docker 18.09.5
 - go 1.12
 - go-ipfs
-
+- 
 # Installation
 
-Install jsipfs CLI 
+- Docker Install
 ```sh
-$ npm install ipfs@0.35.0 --global 
+$ curl -sSL get.docker.com | sh && \
+$ sudo usermod -aG docker $USER
 ```
 
-Run daemon with pub-sub flag 
+-Disable Swap
 ```sh
-$ jsipfs daemon --enable-pubsub-experiment 
+$ sudo dphys-swapfile swapoff && \
+$ sudo dphys-swapfile uninstall && \
+$ sudo update-rc.d dphys-swapfile remove
+$ echo Adding " cgroup_enable=cpuset cgroup_enable=memory" to /boot/cmdline.txt
+```
+- Add repo list and install kubeadm
+```sh
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
+sudo apt-get update -q && \
+sudo apt-get install -qy kubeadm 
 ```
