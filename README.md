@@ -83,7 +83,7 @@ If using Weave Net
 * Initialize your master node:
 
 ```sh
-$ sudo kubeadm init --token-ttl=0
+sudo kubeadm init --token-ttl=0
 ```
 After the `init` is complete run the snippet given to you on the command-line:
 
