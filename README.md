@@ -87,5 +87,9 @@ $ sudo kubeadm join --ignore-preflight-errors=all wc0mxl.tw2chfnr3hxf8b54 --disc
 If you do not remember the join, check the kubeadm join history again:
 ```sh
 $ sudo kubeadm token create --print-join-command
-``
+```
+On each node that joins including the master:
+```sh
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+```
 
