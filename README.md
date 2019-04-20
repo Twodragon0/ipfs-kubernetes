@@ -17,8 +17,8 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 - kubernetes 1.13
 - docker 18.09.5
 - go 1.12
-- go-ipfs
-- 
+- go-ipfs 0.4.19
+
 # Installation
 
 - Docker Install
@@ -26,7 +26,11 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 $ curl -sSL get.docker.com | sh && \ 
 sudo usermod -aG docker $USER  
 ```
-If not $ sudo usermod NAME -aG docker or reboot
+If it doesn't work, we can use 
+```sh
+$ sudo usermod NAME -aG docker
+$ sudo reboot
+```
 
 -Disable Swap
 ```sh
