@@ -120,6 +120,31 @@ sudo systemctl restart kubelet
 ubuntu cgroup error:
 ```sh
 sudo nano /etc/default/grub
-`GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"`
+GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"
 sudo grub-update && sudo reboot
 ```
+The connection to the server localhost:8080 was refused – did you specify the right host or port? or Unable to connect to the server: x509: certificate signed by unknown authority (possibly because of "crypto/rsa: verification error" while trying to verify candidate authority certificate "kubernetes")
+To fix this issue, simply export the admin.conf on the master node:
+```sh
+sudo cp /etc/kubernetes/admin.conf $HOME
+sudo chown $(id -u):$(id -g) $HOME/admin.conf
+export KUBECONFIG=$HOME/admin.conf
+```
+
+if not kubeadm join, kubernetes clean delete:
+```sh
+systemctl stop kubelet \
+systemctl stop docker \
+kubeadm reset
+
+rm -rf /var/lib/cni/
+rm -rf /var/lib/kubelet/*
+rm -rf /run/flannel
+rm -rf /etc/cni/
+rm -rf /etc/kubernetes
+rm -rf /var/lib/etcd/
+rm -rf ~/.kube
+ip link delete cni0
+ip link delete flannel.1
+```
+And then Top Scroll to install, fAnd then install, first uses `$ systemctl start docker`
