@@ -23,16 +23,17 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 
 - Docker Install
 ```sh
-$ curl -sSL get.docker.com | sh && \
-$ sudo usermod -aG docker $USER
+$ curl -sSL get.docker.com | sh && \ 
+sudo usermod -aG docker $USER  (if not $ sudo usermod NAME -aG docker or reboot)
 ```
 
 -Disable Swap
 ```sh
+$ sudo swapoff -a
 $ sudo dphys-swapfile swapoff && \
-$ sudo dphys-swapfile uninstall && \
-$ sudo update-rc.d dphys-swapfile remove
-$ echo Adding " cgroup_enable=cpuset cgroup_enable=memory" to /boot/cmdline.txt
+sudo dphys-swapfile uninstall && \
+sudo update-rc.d dphys-swapfile remove
+$ echo Adding "cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" to /boot/cmdline.txt
 ```
 - Add repo list and install kubeadm
 ```sh
