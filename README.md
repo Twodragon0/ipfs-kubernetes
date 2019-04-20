@@ -104,3 +104,22 @@ On each node that joins including the master:
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
+# Troubleshooting
+
+The connection to the server 192.168.1.48:6443 was refused - did you specify the right host or port? or after reboot kubectl command not work:
+```sh
+cd ~/.kube \
+rm -rf config
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+export KUBECONFIG=$HOME/.kube/config
+sudo systemctl restart kubelet.service
+sudo systemctl restart docker
+sudo systemctl restart kubelet
+```
+ubuntu cgroup error:
+```sh
+sudo nano /etc/default/grub
+`GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"`
+sudo grub-update && sudo reboot
+```
