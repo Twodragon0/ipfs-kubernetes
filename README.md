@@ -147,4 +147,4 @@ rm -rf ~/.kube
 ip link delete cni0
 ip link delete flannel.1
 ```
-And then Top Scroll to install, fAnd then install, first uses `$ systemctl start docker`
+And then install, first uses `$ systemctl start docker`
