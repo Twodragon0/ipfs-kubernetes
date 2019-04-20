@@ -19,12 +19,11 @@ Nodes with name worker node1 and worker node2 running as a child process in kube
 - go 1.12
 - go-ipfs 0.4.19
 
-Keep read same fild:
+Sharing url:
 https://github.com/alexellis/k8s-on-raspbian
 
-static network ip for mac mini and raspberry pi
-https://altongmon.tistory.com/637
-https://hiseon.me/2018/09/06/ubuntu-18-04-netplan/
+Static network ip for mac mini and raspberry pi:
+https://altongmon.tistory.com/637, https://hiseon.me/2018/09/06/ubuntu-18-04-netplan/
 
 # Installation
 
@@ -120,12 +119,18 @@ On each node that joins including the master:
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
-`
+```
+$ kubectl get nodes
 NAME            STATUS   ROLES    AGE   VERSION
 23ipfscluster   Ready    <none>   25d   v1.14.1
 wrl-01macmini   Ready    master   36d   v1.13.4
 wrl-02macmini   Ready    <none>   25d   v1.14.1
-`
+```
+
+## Initialize Dashboard
+
+Sharing url:
+https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/dashboard-tutorial.html
 
 # Troubleshooting
 
@@ -178,3 +183,36 @@ kubectl delete pods deployment --namespace=kube-system kube-flannel-ds-arm-7p5pl
 sudo reboot
 ```
 
+## Other issues
+
+heapster, monitoring-influxdb error and give label for worker node:
+```sh
+kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl label node 25ipfscluster node-role.kubernetes.io/worker=worker
+```
+
+Shutdown kubectl proxy:
+```sh
+killall kubectl
+```
+
+- To enable SSH
+Search for and install the openssh-server package from Ubuntu Software Center. Or run command below in console if you’re on Ubuntu Server without GUI:
+```sh
+sudo apt-get install openssh-server
+```
+
+To edit settings - To change the port 22, root login permission, you may edit the `/etc/ssh/sshd_config` file via:
+```sh
+sudo nano /etc/ssh/sshd_config
+```
+After you changed the configurations, press Ctrl+X followed by typing y and hitting enter to save the file.
+
+Finally restart the SSH service to apply the changes:
+```sh
+sudo service ssh restart
+```
+if not, host connection this:
+```sh
+ssh-keygen -R 192.168.1.49
+```
