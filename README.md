@@ -132,11 +132,34 @@ wrl-02macmini   Ready    <none>   25d   v1.14.1
 Sharing url:
 https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/dashboard-tutorial.html
 
+## Initialized Docker-ipfs for kubernetes
+
+Containers packaged with all dependencies and software for IoT applications are portable, light and secure. Containerized IoT applications/services deployed using Docker containers:
+```sh
+sudo docker run -d -it --name docker-ipfs -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p 4002:4002 -p 127.0.0.1:8081:8081 -p 127.0.0.1:5002:5002 shapna/go-ipfs_node1:Node1
+```
+Developled IoT services with P2P pubsub communication model based on Interplanetary File System (IPFS):
+```sh
+sudo docker run -d -it --name docker-ipfs -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p 4003:4003 -p 127.0.0.1:8082:8082 -p 127.0.0.1:5003:5003 shapna/go-ipfs_node1:Node1 --enable-pubsub-experiment
+```
+containerized ipfs in raspberry pi 3b:
+```sh
+sudo docker run -d --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs -p 4001:4001 -p 127.0.0.1:8080:8080 -p 127.0.0.1:5001:5001 yrzr/go-ipfs-arm32v7:latest --enable-pubsub-experiment
+```
+Sharing arm32v7-ipfs url: 
+https://hub.docker.com/r/yrzr/go-ipfs-arm32v7/
+
+
+A platform to orchestrate all these containers along with their varying workloads, computing, networking, and storage are in demand. And their Orchestration managed by Kubernetes:
+```sh
+
+```
+
 # Troubleshooting
 
 The connection to the server 192.168.1.48:6443 was refused - did you specify the right host or port? or after reboot kubectl command not work:
 ```sh
-cd ~/.kube \
+cd ~/.kube
 rm -rf config
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
