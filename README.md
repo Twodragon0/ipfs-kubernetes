@@ -97,7 +97,8 @@ Your join token is valid for 24 hours, so save it into a text file. Here's an ex
 ```sh
 sudo kubeadm join 192.168.1.49:6443 --token 23oulg.on7eyrbnetdyolp8 --discovery-token-ca-cert-hash sha256:6a583e6385e895971dcc9dc78505e14c1ba6f429f66aee53ab1ac3d4abac733d
 ```
-If you do not remember the join, check the kubeadm join history again:
+If you do not remember the join, check the kubeadm join history again ([preflight] Running pre-flight checks
+	[WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/ error execution phase preflight: couldn't validate the identity of the API Server: expected a 32 byte SHA-256 hash, found 29 bytes):
 ```sh
 sudo kubeadm token create --print-join-command
 ```
