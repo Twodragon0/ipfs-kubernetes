@@ -150,10 +150,13 @@ sudo docker run -d --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data
 Sharing arm32v7-ipfs url: 
 https://hub.docker.com/r/yrzr/go-ipfs-arm32v7/
 
-
-A platform to orchestrate all these containers along with their varying workloads, computing, networking, and storage are in demand. And their Orchestration managed by Kubernetes:
+A platform to orchestrate all these containers along with their varying workloads, computing, networking, and storage are in demand. And their Orchestration managed by Kubernetes. dockerized ipfs in raspberry pi using kubectl (+nodeselector):
 ```sh
-
+kubectl run --generator=run-pod/v1 pi-ipfs3 --image=yrzr/go-ipfs-arm32v7:latest --overrides='{ "apiVersion": "v1"O, "spec": { "nodeSelector": { "worker-node": "pi" } } }' --port 8087 -- daemon --enable-pubsub-experiment 
+```
+dockerized ipfs in mac mini using kubectl (+nodeselector):
+```sh
+kubectl run --generator=run-pod/v1 mac2-ipfs1 --image=shapna/go-ipfs_node1:Node1 --overrides='{ "apiVersion": "v1", "spec": { "nodeSelector": { "worker-node": "mac" } } }' --port 8083 -- daemon --enable-pubsub-experiment 
 ```
 
 # Troubleshooting
@@ -220,7 +223,7 @@ Shutdown kubectl proxy:
 killall kubectl
 ```
 
-- To enable SSH
+### To enable SSH
 Search for and install the openssh-server package from Ubuntu Software Center. Or run command below in console if you’re on Ubuntu Server without GUI:
 ```sh
 sudo apt-get install openssh-server
@@ -239,4 +242,26 @@ sudo service ssh restart
 if not, host connection this:
 ```sh
 ssh-keygen -R 192.168.1.49
+```
+
+### Kubernetes Node selector
+first, we have to check node label:
+```sh
+kubectl get nodes --show-labels
+```
+label create:
+```sh
+kubectl label nodes wrl-02macmini worker-node=mac
+```
+label delete:
+```sh
+kubectl label nodes wrl-02macmini worker_node-
+```
+kubectl select node and label for nginx:
+```sh
+kubectl run --generator=run-pod/v1 nginx2 --image=nginx --overrides='{ "apiVersion": "v1", "spec": { "nodeSelector": { "workernode": "1" } } }' 
+```
+kubectl select node and label:
+```sh
+kubectl run --generator=run-pod/v1 pi-ipfs --image=shapna/go-ipfs_node1:Node1 --overrides='{ "apiVersion": "v1", "spec": { "nodeSelector": { "workernode": "1" } } }' --port 8083 -- daemon --enable-pubsub-experiment 
 ```
