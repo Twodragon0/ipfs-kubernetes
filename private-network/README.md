@@ -1,5 +1,5 @@
 
-## Private ipfs Network in Docker
+## IPFS Private Network in Docker
 
 Dockerized-ipfs node using Docker-compose:
 ```sh
