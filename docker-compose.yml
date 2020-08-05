@@ -31,7 +31,7 @@ services:
       context: private-network
     environment:
       LIBP2P_FORCE_PNET: '1'
-      SWARM_KEY: "/key/swarm/psk/1.0.0/\n/base16/\n00f07a3d50e39cfa49adbd9c356477881fdc52acda3c90d8da4261e00601c1b6"
+      SWARM_KEY: "/key/swarm/psk/1.0.0/\n/base16/\n00f07a3d50e39cfa49adbd9*6"
     volumes:
       - node-2:/data/ipfs
       - ./private-network/.ipfs/swarm.key:/data/ipfs/swarm.key
@@ -44,8 +44,8 @@ services:
       context: private-network
     environment:
       LIBP2P_FORCE_PNET: '1'
-      SWARM_KEY: "/key/swarm/psk/1.0.0/\n/base16/\n00f07a3d50e39cfa49adbd9c356477881fdc52acda3c90d8da4261e00601c1b6"
-      SWARM_PEER: /ip4/192.241.213.72/tcp/4001/p2p/Qma4bvcDe5sXZbBqiexX4Tf8zB4bpVxr7UHFnfozFiFtTv
+      SWARM_KEY: "/key/swarm/psk/1.0.0/\n/base16/\n00f07a3d50e39cfa49adbd9*6"
+      SWARM_PEER: /ip4/192.*.*.*/tcp/4001/p2p/Qma4bvcDe5sXZbBqiexX4Tf8zB4bpVxr7UHFnfozFiFtT*v
     volumes:
       - node-3:/data/ipfs
       - ./private-network/.ipfs/swarm.key:/data/ipfs/swarm.key
