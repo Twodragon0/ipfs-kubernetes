@@ -16,7 +16,7 @@
   },
   "AutoNAT": {},
   "Bootstrap": [
-    "/ip4/192.241.213.72/tcp/4001/p2p/Qma4bvcDe5sXZbBqiexX4Tf8zB4bpVxr7UHFnfozFiFtTv"
+    "/ip4/192.*.*.*/tcp/4001/p2p/Qma4bvcDe5sXZbBqiexX4Tf8zB4bpVxr7UHFnfozFiFtT*v"
   ],
   "Datastore": {
     "BloomFilterSize": 0,
