@@ -10,7 +10,7 @@ This is an example of kubernetes between ipfs nodes. In this example, there are 
 - worker node1 (mac-mini)
 - worker node2 (pi)
 
-Nodes with name worker node1 and worker node2 running as a child process in kubernetes. Master node handle to the go-ipfs that start daemon with pub-sub-experiment flag using CLI command. 
+Nodes with name worker node1 and worker node2 running as a child process in kubernetes. Master node handle to the go-ipfs that start daemon with pub-sub-experiment flag using CLI command. When you want docker swarm, please click private-network folder.
 
 # Requirements
 - ubuntu LTS 18.04
