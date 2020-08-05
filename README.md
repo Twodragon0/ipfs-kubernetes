@@ -1,5 +1,5 @@
 
-# ipfs-kubernetes
+# ipfs-kubernetes or Docker Swarm
 In life, video and log data are very large, and in order to effectively preserve and manage them, the environment of edge, fog, and cloud computing must be included. Therefore, the goal of this environment is to develop non-reversive storage management technologies based on blockchain and ipfs in a scalable cloud computing environment.
 
 
