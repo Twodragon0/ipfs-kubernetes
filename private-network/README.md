@@ -30,5 +30,7 @@ docker exec -it <container_id> /bin/ash
 
 Shift Host File to container images inside:
 ```sh
-docker cp ~/daygeek6.txt ab572d62b1:/
+sudo apt install xfsprogs -y
+xfs_mkfile 10M 10MB_file.txt
+docker cp ~/10MB_file.txt ab572d62b1:/
 ```
