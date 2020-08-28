@@ -28,9 +28,16 @@ docker run -d --name ipfs_host -v $ipfs_staging:/export -v $ipfs_data:/data/ipfs
 docker exec -it <container_id> /bin/ash
 ```
 
-Shift Host File to container images inside:
+Shift host File to container images inside:
 ```sh
 sudo apt install xfsprogs -y
 xfs_mkfile 10M 10MB_file.txt
 docker cp ~/10MB_file.txt ab572d62b1:/
+```
+
+Shift container images to host File inside:
+```sh
+sudo apt install xfsprogs -y
+xfs_mkfile 10M 10MB_file.txt
+docker cp 7f12878cd1:/QmUSdoVvGg9y ~
 ```
