@@ -6,6 +6,12 @@ Dockerized-ipfs node using Docker-compose:
 cd..
 docker-compose up
 ```
+
+Dockerized-ipfs-cluster services using Docker Swarm:
+```sh
+docker stack deploy -c docker-compose.yml wrl
+```
+
 In docker, remove public bootstrap. Make swarm.key:
 ```sh
 ipfs bootstrap rm all
